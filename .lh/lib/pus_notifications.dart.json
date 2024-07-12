@@ -1,0 +1,26 @@
+{
+    "sourceFile": "lib/pus_notifications.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1720825279662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1720826547516,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,16 +14,18 @@\n   //app en primer plano\n   static Future _onMessageHandler(RemoteMessage message) async {\n     print('==== 🔔 NOTIFICACION PRIMER PLANO ====');\n     final data = message.data;\n+    _messageStream.add(data);\n \n   }\n \n   //Segundo Plano\n   static Future _backgroundHandler(RemoteMessage message) async {\n     print('====  🔔 NOTIFICACION SEGUNDO PLANO ====');\n \n     final data = message.data;\n+    _messageStream.add(data);\n \n    \n   }\n \n"
+                },
+                {
+                    "date": 1720827997934,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,16 +33,18 @@\n   static Future _onMessageOpenApp(RemoteMessage message) async {\n     print('==== 🔔 NOTIFICACION APP CERRADA ====');\n \n     final data = message.data;\n+    _messageStream.add(data);\n \n     \n   }\n \n   static Future initializeApp() async {\n     //push Notifications\n     await Firebase.initializeApp();\n     await requestPermission();\n+\n     token = await FirebaseMessaging.instance.getToken();\n     print('==  TOKEN NOTIFICATIONS: $token ===');\n     // prefs.idDevice = token ?? '';\n     //Handlers\n"
+                }
+            ],
+            "date": 1720825279662,
+            "name": "Commit-0",
+            "content": "import 'dart:async';\nimport 'package:firebase_core/firebase_core.dart';\nimport 'package:firebase_messaging/firebase_messaging.dart';\n\nclass PushNotificationsService {\n  static FirebaseMessaging messaging = FirebaseMessaging.instance;\n  static String? token;\n  static StreamController<Map<String, dynamic>> _messageStream =\n      StreamController.broadcast();\n\n  static Stream<Map<String, dynamic>> get messageStream =>\n      _messageStream.stream;\n\n  //app en primer plano\n  static Future _onMessageHandler(RemoteMessage message) async {\n    print('==== 🔔 NOTIFICACION PRIMER PLANO ====');\n    final data = message.data;\n\n  }\n\n  //Segundo Plano\n  static Future _backgroundHandler(RemoteMessage message) async {\n    print('====  🔔 NOTIFICACION SEGUNDO PLANO ====');\n\n    final data = message.data;\n\n   \n  }\n\n  //app Cerrada\n  static Future _onMessageOpenApp(RemoteMessage message) async {\n    print('==== 🔔 NOTIFICACION APP CERRADA ====');\n\n    final data = message.data;\n\n    \n  }\n\n  static Future initializeApp() async {\n    //push Notifications\n    await Firebase.initializeApp();\n    await requestPermission();\n    token = await FirebaseMessaging.instance.getToken();\n    print('==  TOKEN NOTIFICATIONS: $token ===');\n    // prefs.idDevice = token ?? '';\n    //Handlers\n    FirebaseMessaging.onBackgroundMessage(_backgroundHandler);\n    FirebaseMessaging.onMessage.listen(_onMessageHandler);\n    FirebaseMessaging.onMessageOpenedApp.listen(_onMessageOpenApp);\n  }\n\n  static closeStreams() {\n    _messageStream.close();\n  }\n\n  static requestPermission() async {\n    NotificationSettings settings = await messaging.requestPermission(\n        alert: true,\n        announcement: false,\n        badge: true,\n        carPlay: false,\n        criticalAlert: false,\n        provisional: false,\n        sound: true);\n\n    print('User push notification status ${settings.authorizationStatus}');\n  }\n}\n"
+        }
+    ]
+}
