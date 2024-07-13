@@ -43,7 +43,7 @@ class PushNotificationsService {
     //push Notifications
     await Firebase.initializeApp();
     await requestPermission();
-
+    await FirebaseMessaging.instance.getAPNSToken();
     token = await FirebaseMessaging.instance.getToken();
     print('==  TOKEN NOTIFICATIONS: $token ===');
     // prefs.idDevice = token ?? '';

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1720827451042,
@@ -24,6 +24,26 @@
                 {
                     "date": 1720827971181,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,77 +1,13 @@\n import UIKit\n import Flutter\n-import FirebaseMessaging\n-import Firebase\n \n @UIApplicationMain\n @objc class AppDelegate: FlutterAppDelegate {\n   override func application(\n     _ application: UIApplication,\n     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?\n   ) -> Bool {\n-    if #available(iOS 10.0, *) {\n-      // For iOS 10 display notification (sent via APNS)\n-      UNUserNotificationCenter.current().delegate = self\n-\n-      let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]\n-      UNUserNotificationCenter.current().requestAuthorization(\n-        options: authOptions,\n-        completionHandler: { _, _ in }\n-      )\n-    } else {\n-      let settings: UIUserNotificationSettings =\n-        UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)\n-      application.registerUserNotificationSettings(settings)\n-    }\n-    FirebaseApp.configure()\n     GeneratedPluginRegistrant.register(with: self)\n-    application.registerForRemoteNotifications()\n     return super.application(application, didFinishLaunchingWithOptions: launchOptions)\n   }\n-    override func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {\n-    let firebaseAuth = Auth.auth()\n-    Messaging.messaging().apnsToken = deviceToken\n-    firebaseAuth.setAPNSToken(deviceToken, type: AuthAPNSTokenType.unknown)\n-\n-    return super.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)\n-  }\n-\n }\n-import UIKit\n-import Flutter\n-import FirebaseMessaging\n-\n-@UIApplicationMain\n-@objc class AppDelegate: FlutterAppDelegate {\n-  override func application(\n-    _ application: UIApplication,\n-    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?\n-  ) -> Bool {\n-    if #available(iOS 10.0, *) {\n-      // For iOS 10 display notification (sent via APNS)\n-      UNUserNotificationCenter.current().delegate = self\n-\n-      let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]\n-      UNUserNotificationCenter.current().requestAuthorization(\n-        options: authOptions,\n-        completionHandler: { _, _ in }\n-      )\n-    } else {\n-      let settings: UIUserNotificationSettings =\n-        UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)\n-      application.registerUserNotificationSettings(settings)\n-    }\n-    FirebaseApp.configure()\n-    GeneratedPluginRegistrant.register(with: self)\n-    application.registerForRemoteNotifications()\n-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)\n-  }\n-    override func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {\n-    let firebaseAuth = Auth.auth()\n-    Messaging.messaging().apnsToken = deviceToken\n-    firebaseAuth.setAPNSToken(deviceToken, type: AuthAPNSTokenType.unknown)\n-\n-    return super.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)\n-  }\n-\n-}\n"
+                },
+                {
+                    "date": 1720828744338,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,5 +9,9 @@\n   ) -> Bool {\n     GeneratedPluginRegistrant.register(with: self)\n     return super.application(application, didFinishLaunchingWithOptions: launchOptions)\n   }\n+\n+  func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {\n+    Messaging.messaging().apnsToken = deviceToken\n+  }\n }\n"
+                },
+                {
+                    "date": 1720828834549,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n import UIKit\n import Flutter\n+import Firebase\n+import Messaging\n \n @UIApplicationMain\n @objc class AppDelegate: FlutterAppDelegate {\n   override func application(\n"
+                },
+                {
+                    "date": 1720828908134,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n import UIKit\n import Flutter\n import Firebase\n-import Messaging\n \n @UIApplicationMain\n @objc class AppDelegate: FlutterAppDelegate {\n   override func application(\n@@ -12,8 +11,5 @@\n     GeneratedPluginRegistrant.register(with: self)\n     return super.application(application, didFinishLaunchingWithOptions: launchOptions)\n   }\n \n-  func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {\n-    Messaging.messaging().apnsToken = deviceToken\n-  }\n }\n"
+                },
+                {
+                    "date": 1720828925870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,10 @@\n   override func application(\n     _ application: UIApplication,\n     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?\n   ) -> Bool {\n+    FirebaseApp.configure()\n+    application.registerForRemoteNotifications()\n     GeneratedPluginRegistrant.register(with: self)\n     return super.application(application, didFinishLaunchingWithOptions: launchOptions)\n   }\n \n"
+                },
+                {
+                    "date": 1720829131195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n import UIKit\n import Flutter\n-import Firebase\n+// import Firebase\n \n @UIApplicationMain\n @objc class AppDelegate: FlutterAppDelegate {\n   override func application(\n     _ application: UIApplication,\n     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?\n   ) -> Bool {\n-    FirebaseApp.configure()\n-    application.registerForRemoteNotifications()\n+    // FirebaseApp.configure()\n+    // application.registerForRemoteNotifications()\n     GeneratedPluginRegistrant.register(with: self)\n     return super.application(application, didFinishLaunchingWithOptions: launchOptions)\n   }\n \n"
                 }
             ],
             "date": 1720827451042,

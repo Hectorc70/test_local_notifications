@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1720825776441,
@@ -12,6 +12,14 @@
                 {
                     "date": 1720827326145,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,20 +23,21 @@\n \t<key>CFBundleSignature</key>\n \t<string>????</string>\n \t<key>CFBundleVersion</key>\n \t<string>$(FLUTTER_BUILD_NUMBER)</string>\n+\t<key>FirebaseAppDelegateProxyEnabled</key>\n+\t<true/>\n \t<key>LSRequiresIPhoneOS</key>\n \t<true/>\n \t<key>UIApplicationSupportsIndirectInputEvents</key>\n \t<true/>\n \t<key>UIBackgroundModes</key>\n \t<array>\n \t\t<string>audio</string>\n \t\t<string>fetch</string>\n+\t\t<string>processing</string>\n \t\t<string>remote-notification</string>\n \t</array>\n-\t<key>FirebaseAppDelegateProxyEnabled</key>\n-\t<false/>\n \t<key>UILaunchStoryboardName</key>\n \t<string>LaunchScreen</string>\n \t<key>UIMainStoryboardFile</key>\n \t<string>Main</string>\n"
+                },
+                {
+                    "date": 1720828608940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \t<string>????</string>\n \t<key>CFBundleVersion</key>\n \t<string>$(FLUTTER_BUILD_NUMBER)</string>\n \t<key>FirebaseAppDelegateProxyEnabled</key>\n-\t<true/>\n+\t<String/>\n \t<key>LSRequiresIPhoneOS</key>\n \t<true/>\n \t<key>UIApplicationSupportsIndirectInputEvents</key>\n \t<true/>\n"
+                },
+                {
+                    "date": 1720828698095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \t<string>????</string>\n \t<key>CFBundleVersion</key>\n \t<string>$(FLUTTER_BUILD_NUMBER)</string>\n \t<key>FirebaseAppDelegateProxyEnabled</key>\n-\t<String/>\n+\t<false/>\n \t<key>LSRequiresIPhoneOS</key>\n \t<true/>\n \t<key>UIApplicationSupportsIndirectInputEvents</key>\n \t<true/>\n"
                 }
             ],
             "date": 1720825776441,
